@@ -1,0 +1,10 @@
+// .sequelizerc
+
+import { resolve } from "path";
+
+export default {
+  config: resolve("src/config", "sequelizeConfig.js"),
+  "models-path": resolve("src", "models"),
+  "seeders-path": resolve("db", "seeders"),
+  "migrations-path": resolve("db", "migrations"),
+};
