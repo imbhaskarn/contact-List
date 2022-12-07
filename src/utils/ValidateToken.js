@@ -1,9 +1,11 @@
-import { jsonwebtoken as jwt } from "jsonwebtoken";
+import jsonwebtoken from "jsonwebtoken";
+const jwt = jsonwebtoken;
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const collectToken = (req) => {
+  console.log(req.headers);
   if (
     req.headers.authorization &&
     req.headers.authorization.split(" ")[0] === "Bearer"
@@ -13,33 +15,25 @@ const collectToken = (req) => {
   return null;
 };
 
-export default async (req, res, next) => {
+const validateToken = async (req, res, next) => {
   const token = collectToken(req);
   if (!token) {
     return res.status(401).json({
-      result: 'fail',
+      result: "fail",
       massage: "Authorization token is not provided",
-      data: []
     });
   }
   jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
-    if (!err) {
-      req.payload = payload;
-    }
-    if (err.name == "TokenExpiredError") {
-      return res.status(401).json({
-        result: "fail",
-        message: "Jwt token expired!",
-        data: [],
-      });
-    }
-    if (err.name == "JsonWebTokenError") {
+    console.log(err)
+    if (err) {
       return res.status(401).json({
         result: "fail",
         message: "Jwt token error!",
-        data: [],
       });
     }
+    req.payload = payload;
+    next()
   });
-  next();
 };
+
+export default validateToken;
