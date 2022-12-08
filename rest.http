@@ -1,3 +1,14 @@
 get http://localhost:8080/protected
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYmhhc2thciIsImlhdCI6MTY3MDQzNTg4NCwiZXhwIjoxNjcwNDM5NDg0fQ.JlO0SXN2quhN23OiWaIUmPTpdS29Y0yEJv-bGQ_eL6w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYmhhc2thciIsImlhdCI6MTY3MDQ5NjI0NiwiZXhwIjoxNjcxMTAxMDQ2fQ.cA2glcO2nOKk82SxUoZdyvP5vmCA84lhBof52i-_Xt4
+
+###
+
+post http://localhost:8080/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYmhhc2thciIsImlhdCI6MTY3MDQ5NjI0NiwiZXhwIjoxNjcxMTAxMDQ2fQ.cA2glcO2nOKk82SxUoZdyvP5vmCA84lhBof52i-_Xt4
+
+{
+    "username": "usernamk",
+    "password": "password"
+}

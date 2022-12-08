@@ -2,13 +2,15 @@ import express from "express";
 import { urlencoded } from "express";
 import validateToken from "./utils/validateToken.js";
 import addressBookRouter from "./routes/addressBook.route.js";
-const app = express();
 
+// import auth controllers
+import { RegisterUser } from "./controllers/auth.controller.js";
+
+const app = express();
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
-app.use('/api/v1/addressbook', addressBookRouter)
-
+app.use("/api/v1/addressbook", addressBookRouter);
 app.get("/", (req, res) => {
   return res.status(200).json({
     result: "success",
@@ -29,5 +31,7 @@ app.get("/protected", validateToken, (req, res) => {
     },
   });
 });
+
+app.post("/register", RegisterUser);
 
 export default app;
