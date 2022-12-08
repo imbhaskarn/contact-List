@@ -1,24 +1,32 @@
-"use strict";
-
-import { readdirSync } from "fs";
-import { basename as _basename, join } from "path";
+import fs from "fs";
+import path from "path";
 import Sequelize, { DataTypes } from "sequelize";
-import { env as _env } from "process";
-const basename = _basename(__filename);
-const env = _env.NODE_ENV || "development";
+import * as dotenv from "dotenv";
+dotenv.config();
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const env = process.env.NODE_ENV || "development";
+import sequelizeConfig from "../config/sequelizeConfig.js";
+const config = sequelizeConfig[env];
 
-import { sequelizeConfig as config } from "./models/config/sequelizeConfig";
 
-const db = {};
 
+
+// import models from files
+
+import userModel from './user.js'
+
+
+// create sequelize instance
 const sequelize = new Sequelize(
-  config[env.NODE_ENV].name,
-  config[env.NODE_ENV].username,
-  config[env.NODE_ENV].password,
+  config.database,
+  config.username,
+  config.password,
   {
-    host: config[env.NODE_ENV].host,
-    port: config[env.NODE_ENV].port,
-    dialect: config[env.NODE_ENV].dialect,
+    host: config.host,
+    port: config.port,
+    dialect: config.dialect,
     define: {
       timestamps: true,
       underscored: true,
@@ -35,24 +43,29 @@ sequelize
     console.log("Unable to connect to the database:", err);
   });
 
-readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach((file) => {
-    const model = require(join(__dirname, file))(sequelize, DataTypes);
-    db[model.name] = model;
-  });
+let models = {
+    User: userModel(sequelize, DataTypes)
+};
 
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+// fs.readdirSync(__dirname)
+//   .filter((file) => file.indexOf(".") !== 0 && file !== "indes.js")
+//   .forEach((file) => {
+//     console.log(path.join(__dirname, file))
+
+//     import model from `${path.join(__dirname, file)}`
+
+//     // const model = sequelize.import(path.join(__dirname, file));
+//     models[model.name] = model;
+//   });
+
+// !!!! посмоти что делает associate в моделях, он нам пока не нужен, но обрати внимание на эту технику
+Object.keys(models).forEach((modelName) => {
+  if (typeof models[modelName].associate === "function") {
+    models[modelName].associate(models);
   }
 });
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
+const db = {
+  sequelize,
+  Sequelize,
+};
 export default db;

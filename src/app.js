@@ -1,10 +1,13 @@
 import express from "express";
 import { urlencoded } from "express";
 import validateToken from "./utils/validateToken.js";
+import addressBookRouter from "./routes/addressBook.route.js";
 const app = express();
 
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
+
+app.use('/api/v1/addressbook', addressBookRouter)
 
 app.get("/", (req, res) => {
   return res.status(200).json({

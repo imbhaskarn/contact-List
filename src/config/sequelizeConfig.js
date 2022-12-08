@@ -1,13 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-export const sequelizeConfig = {
+export default  {
   development: {
-    username: "root",
-    password: null,
-    database: "database_development",
+    username: "postgres",
+    password: "password",
+    database: "postgres",
     host: "127.0.0.1",
-    dialect: "mysql",
+    port: 5432,
+    dialect: "postgres",
   },
   test: {
     username: "root",
