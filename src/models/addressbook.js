@@ -1,13 +1,13 @@
 "use strict";
 import { Model } from "sequelize";
 export default (sequelize, DataTypes) => {
-  class addressBook extends Model {
+  class AddressBook extends Model {
     static associate(models) {
-      addressBook.belongsTo(models.User, { foreignKey: "user_id" });
-      models.User.hasMany(addressBook, { foreignKey: "user_id" });
+      AddressBook.belongsTo(models.User, { foreignKey: "user_id" });
+      models.User.hasMany(AddressBook, { foreignKey: "user_id" });
     }
   }
-  addressBook.init(
+  AddressBook.init(
     {
       id: {
         allowNull: false,
@@ -55,9 +55,9 @@ export default (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "addressBook",
+      modelName: "AddressBook",
       tableName: "address_book",
     }
   );
-  return addressBook;
+  return AddressBook;
 };

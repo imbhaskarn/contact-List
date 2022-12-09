@@ -16,7 +16,7 @@ const config = sequelizeConfig[env];
 // import models from files
 
 import userModel from './user.js'
-
+import addressBookModel from "./addressbook.js";
 
 // create sequelize instance
 const sequelize = new Sequelize(
@@ -29,7 +29,7 @@ const sequelize = new Sequelize(
     dialect: config.dialect,
     define: {
       timestamps: true,
-      underscored: true,
+      underscored: false,
     },
   }
 );
@@ -44,21 +44,10 @@ sequelize
   });
 
 let models = {
-    User: userModel(sequelize, DataTypes)
+    User: userModel(sequelize, DataTypes),
+    AddressBook: addressBookModel(sequelize, DataTypes)  
 };
 
-// fs.readdirSync(__dirname)
-//   .filter((file) => file.indexOf(".") !== 0 && file !== "indes.js")
-//   .forEach((file) => {
-//     console.log(path.join(__dirname, file))
-
-//     import model from `${path.join(__dirname, file)}`
-
-//     // const model = sequelize.import(path.join(__dirname, file));
-//     models[model.name] = model;
-//   });
-
-// !!!! посмоти что делает associate в моделях, он нам пока не нужен, но обрати внимание на эту технику
 Object.keys(models).forEach((modelName) => {
   if (typeof models[modelName].associate === "function") {
     models[modelName].associate(models);
@@ -68,4 +57,6 @@ const db = {
   sequelize,
   Sequelize,
 };
+export const User = models.User
+export const AddressBook = models.AddressBook
 export default db;
