@@ -4,7 +4,7 @@ import validateToken from "./utils/validateToken.js";
 import addressBookRouter from "./routes/addressBook.route.js";
 
 // import auth controllers
-import { RegisterUser } from "./controllers/auth.controller.js";
+import { GenerateToken, RegisterUser } from "./controllers/auth.controller.js";
 
 const app = express();
 app.use(express.json());
@@ -33,5 +33,6 @@ app.get("/protected", validateToken, (req, res) => {
 });
 
 app.post("/register", RegisterUser);
+app.post("/generate-token", GenerateToken);
 
 export default app;

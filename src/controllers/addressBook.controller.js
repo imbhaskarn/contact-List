@@ -1,2 +1,6 @@
+import addressbook from "../models/index.js";
 
-export const getAddressBook = (req, res, next) => {};
+export const getAddressBook = (req, res) => {
+
+    
+};
