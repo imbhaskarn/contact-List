@@ -1,25 +1,27 @@
+get http://localhost:8080
+Content-Type: application/json
+
+###
 get http://localhost:8080/protected
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYmhhc2thciIsImlhdCI6MTY3MDQ5NjI0NiwiZXhwIjoxNjcxMTAxMDQ2fQ.cA2glcO2nOKk82SxUoZdyvP5vmCA84lhBof52i-_Xt4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXIiLCJ1c2VyX2lkIjoxLCJpYXQiOjE2NzA2NzEyODEsImV4cCI6MTY3MDc1NzY4MX0.KuZoqotwtNa92jY3xjpH4qewJU1JtcO5gTiGVGpblmA
 
 ###
 
 post http://localhost:8080/register
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYmhhc2thciIsImlhdCI6MTY3MDQ5NjI0NiwiZXhwIjoxNjcxMTAxMDQ2fQ.cA2glcO2nOKk82SxUoZdyvP5vmCA84lhBof52i-_Xt4
 
 {
-    "username": "usernamk",
+    "username": "bhaskars",
     "password": "password"
 }
 
 ###
 post http://localhost:8080/generate-token
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1rIiwiaWF0IjoxNjcwNTYxMzc1LCJleHAiOjE2NzA2NDc3NzV9.whdBmZoR40-se4NBMxYTg0IaVEFnrDB94u-G8m7M32M
 
 {
-    "username": "usernamk",
+    "username": "bhaskar",
     "password": "password"
 }
 
@@ -28,12 +30,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZ
 
 get http://localhost:8080/api/v1/addressbook
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1rIiwidXNlcl9pZCI6NCwiaWF0IjoxNjcwNjU1NDc3LCJleHAiOjE2NzA3NDE4Nzd9.piuy94ug3hG9Cv-oXdpijFhZxypRbhlQ2BYVcO7E0Iw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXIiLCJ1c2VyX2lkIjoxLCJpYXQiOjE2NzA2NzEyODEsImV4cCI6MTY3MDc1NzY4MX0.KuZoqotwtNa92jY3xjpH4qewJU1JtcO5gTiGVGpblmA
+
+
 ###
 POST http://localhost:8080/api/v1/addressbook
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1rIiwidXNlcl9pZCI6NCwiaWF0IjoxNjcwNjU1NDc3LCJleHAiOjE2NzA3NDE4Nzd9.piuy94ug3hG9Cv-oXdpijFhZxypRbhlQ2BYVcO7E0Iw
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXIiLCJ1c2VyX2lkIjoxLCJpYXQiOjE2NzA2NzEyODEsImV4cCI6MTY3MDc1NzY4MX0.KuZoqotwtNa92jY3xjpH4qewJU1JtcO5gTiGVGpblmA
 
 {
   "address": "near temple",
@@ -41,7 +44,31 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZ
   "city": "hanumangarh",
   "pincode": 335524,
   "state": "rajastahn",
-  "country": "india"
+  "country": "Russia"
+}
+
+###
+POST http://localhost:8080/api/v1/addressbook/bulk
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXIiLCJ1c2VyX2lkIjoxLCJpYXQiOjE2NzA2NzEyODEsImV4cCI6MTY3MDc1NzY4MX0.KuZoqotwtNa92jY3xjpH4qewJU1JtcO5gTiGVGpblmA
+
+{
+  "address_bulk": [{
+  "address": "near temple",
+  "town_village": "rawatsar",
+  "city": "hanumangarh",
+  "pincode": 335524,
+  "state": "rajastahn",
+  "country": "Russia"
+},
+{
+  "address": "near temple",
+  "town_village": "rawatsar",
+  "city": "hanumangarh",
+  "pincode": 335524,
+  "state": "rajastahn",
+  "country": "Russia"
+}]
 }
 
 ###
