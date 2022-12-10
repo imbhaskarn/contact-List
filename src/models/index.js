@@ -16,7 +16,7 @@ const config = sequelizeConfig[env];
 // import models from files
 
 import userModel from './user.js'
-import addressBookModel from "./addressbook.js";
+import contactListModel from "./ContactList.js";
 
 // create sequelize instance
 const sequelize = new Sequelize(
@@ -45,7 +45,7 @@ sequelize
 
 let models = {
     User: userModel(sequelize, DataTypes),
-    AddressBook: addressBookModel(sequelize, DataTypes)  
+    ContactList: contactListModel(sequelize, DataTypes)  
 };
 
 Object.keys(models).forEach((modelName) => {
@@ -58,5 +58,5 @@ const db = {
   Sequelize,
 };
 export const User = models.User
-export const AddressBook = models.AddressBook
+export const ContactList = models.ContactList
 export default db;

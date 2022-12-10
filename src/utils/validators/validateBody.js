@@ -26,7 +26,7 @@ export const validateCreds = (req, res, next) => {
   }
   next();
 };
-export const validateAddressBody = (req, res, next) => {
+export const validateContactsListBody = (req, res, next) => {
   const { error, value } = addressSchema.validate(req.body);
   if (error) {
     return res.status(401).json({
