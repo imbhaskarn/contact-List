@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const collectToken = (req) => {
-  console.log(req.headers);
   if (
     req.headers.authorization &&
     req.headers.authorization.split(" ")[0] === "Bearer"
@@ -15,7 +14,7 @@ const collectToken = (req) => {
   return null;
 };
 
-const validateToken = async (req, res, next) => {
+const validateToken = (req, res, next) => {
   const token = collectToken(req);
   if (!token) {
     return res.status(401).json({
@@ -24,7 +23,7 @@ const validateToken = async (req, res, next) => {
     });
   }
   jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
-    console.log(err)
+    console.log(err);
     if (err) {
       return res.status(401).json({
         result: "fail",
@@ -32,7 +31,7 @@ const validateToken = async (req, res, next) => {
       });
     }
     req.payload = payload;
-    next()
+    next();
   });
 };
 
