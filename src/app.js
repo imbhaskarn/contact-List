@@ -1,7 +1,7 @@
 import express from "express";
 import { urlencoded } from "express";
 import validateToken from "./utils/validateToken.js";
-import addressBookRouter from "./routes/addressBook.route.js";
+import contactListRouter from "./routes/contactList.route.js";
 
 // import auth controllers
 import { GenerateToken, RegisterUser } from "./controllers/auth.controller.js";
@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
-app.use("/api/v1/addressbook", addressBookRouter);
+app.use("/api/v1/contact-list", contactListRouter);
 app.get("/", (req, res) => {
   return res.status(200).json({
     result: "success",

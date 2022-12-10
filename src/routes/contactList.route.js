@@ -9,11 +9,11 @@ import {
 } from "../controllers/contactList.controller.js";
 import {
   bulkContactsListValidate,
-  validateContactsListBody,
+  validateContactsList,
 } from "../utils/validators/validateBody.js";
 
 router.get("/", validateToken, getAllContacts);
-router.post("/", validateToken, validateContactsListBody, addNewContact);
+router.post("/", validateToken, validateContactsList, addNewContact);
 router.post(
   "/bulk",
   validateToken,

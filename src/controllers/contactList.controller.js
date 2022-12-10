@@ -1,7 +1,6 @@
-import { AddressBook } from "../models/index.js";
-import { DataType } from "sequelize";
+import { ContactList } from "../models/index.js";
 export const getAllContacts = (req, res) => {
-  AddressBook.findAll({ where: { user_id: req.payload.user_id } })
+  ContactList.findAll({ where: { user_id: req.payload.user_id } })
     .then((data) => {
       console.log(data);
       res.status(201).json({ result: "Success", data: data });
@@ -16,19 +15,15 @@ export const getAllContacts = (req, res) => {
 };
 
 export const addNewContact = (req, res) => {
-  const { address, town_village, city, pincode, state, country } = req.body;
-  AddressBook.create({
+  const { name, phone } = req.body;
+  ContactList.create({
     user_id: req.payload.user_id,
-    address,
-    town_village,
-    city,
-    pincode,
-    state,
-    country,
+    name,
+    phone
   })
     .then((data) => {
       console.log(data);
-      res.status(201).json({ result: "success", data: data });
+      res.status(201).json({ result: "success", message: "New contact saved successfully", data: data });
     })
     .catch((err) => {
       if (err) {
@@ -40,14 +35,14 @@ export const addNewContact = (req, res) => {
 };
 
 export const addNewContactsBulk = (req, res) => {
-  const bulkAddresses = req.body.address_bulk;
-  console.log(bulkAddresses)
-  AddressBook.bulkCreate([bulkAddresses])
+  const bulkContacts = req.body.contacts_bulk;
+  console.log(bulkContacts);
+  ContactList.bulkCreate([bulkContacts])
     .then(() => {
-      res.status(201).json({ result: "success", data: data });
+      res.status(201).json({ result: "success",message: "Contacts in bulk saves succefully", data: data });
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
       if (err) {
         return res
           .status(501)
@@ -57,14 +52,14 @@ export const addNewContactsBulk = (req, res) => {
 };
 
 export const deleteContact = (req, res) => {
-  const address_id = req.body.address_id;
-  AddressBook.destroy({
-    where: { id: address_id, user_id: req.payload.user_id },
+  const contact_id = req.body.contact_id;
+  ContactList.destroy({
+    where: { id: contact_id, user_id: req.payload.user_id },
   })
-    .then((data) => {
+    .then(() => {
       return res
         .status(201)
-        .json({ result: "success", message: "Address deleted successfully!" });
+        .json({ result: "success", message: "Contact deleted successfully!" });
     })
     .catch((err) => {
       if (err) {
