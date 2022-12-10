@@ -1,6 +1,6 @@
 "use strict";
 class UserError extends Error {
-  constructor( code,message) {
+  constructor(code, message) {
     super(message);
     Error.captureStackTrace(this, UserError);
     this.name = "UserError";

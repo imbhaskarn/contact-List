@@ -13,30 +13,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      address: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      town_village: {
+      phone: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      pincode: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      state: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      country: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: "India",
       },
       createdAt: {
         allowNull: false,
@@ -47,7 +30,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    await queryInterface.addConstraint("address_book", {
+    await queryInterface.addConstraint("contact_book", {
       fields: ["user_id"],
       type: "FOREIGN KEY",
       name: "address_book_users_association",
@@ -58,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("address_book");
+    await queryInterface.dropTable("contact_book");
   },
 };

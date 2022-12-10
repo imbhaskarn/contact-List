@@ -1,6 +1,6 @@
 import { AddressBook } from "../models/index.js";
 import { DataType } from "sequelize";
-export const getAddressBook = (req, res) => {
+export const getAllContacts = (req, res) => {
   AddressBook.findAll({ where: { user_id: req.payload.user_id } })
     .then((data) => {
       console.log(data);
@@ -15,7 +15,7 @@ export const getAddressBook = (req, res) => {
     });
 };
 
-export const addNewAddress = (req, res) => {
+export const addNewContact = (req, res) => {
   const { address, town_village, city, pincode, state, country } = req.body;
   AddressBook.create({
     user_id: req.payload.user_id,
@@ -39,7 +39,7 @@ export const addNewAddress = (req, res) => {
     });
 };
 
-export const addNewAddressBulk = (req, res) => {
+export const addNewContactsBulk = (req, res) => {
   const bulkAddresses = req.body.address_bulk;
   console.log(bulkAddresses)
   AddressBook.bulkCreate([bulkAddresses])
@@ -56,7 +56,7 @@ export const addNewAddressBulk = (req, res) => {
     });
 };
 
-export const deleteAddress = (req, res) => {
+export const deleteContact = (req, res) => {
   const address_id = req.body.address_id;
   AddressBook.destroy({
     where: { id: address_id, user_id: req.payload.user_id },
