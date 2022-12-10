@@ -1,5 +1,6 @@
 "use strict";
 import { Model } from "sequelize";
+import { DATE } from "sequelize/lib/data-types";
 export default (sequelize, DataTypes) => {
   class AddressBook extends Model {
     static associate(models) {
@@ -47,6 +48,7 @@ export default (sequelize, DataTypes) => {
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
+        default: 
       },
       updatedAt: {
         allowNull: false,

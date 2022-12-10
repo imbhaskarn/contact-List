@@ -1,5 +1,5 @@
 import { AddressBook } from "../models/index.js";
-
+import { DataType } from "sequelize";
 export const getAddressBook = (req, res) => {
   AddressBook.findAll({ where: { user_id: req.payload.user_id } })
     .then((data) => {
@@ -40,13 +40,14 @@ export const addNewAddress = (req, res) => {
 };
 
 export const addNewAddressBulk = (req, res) => {
-  const bulkAddresses = req.body.bulkAddresses;
-  AddressBook.bulkCreate([bulkAddresses], { returning: true })
-    .then((data) => {
-      console.log(data);
+  const bulkAddresses = req.body.address_bulk;
+  console.log(bulkAddresses)
+  AddressBook.bulkCreate([bulkAddresses])
+    .then(() => {
       res.status(201).json({ result: "success", data: data });
     })
     .catch((err) => {
+      console.log(err)
       if (err) {
         return res
           .status(501)
