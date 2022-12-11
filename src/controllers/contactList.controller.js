@@ -2,10 +2,10 @@ import { ContactList } from "../models/index.js";
 export const getAllContacts = (req, res) => {
   ContactList.findAll({ where: { user_id: req.payload.user_id } })
     .then((data) => {
-      console.log(data);
       res.status(201).json({ result: "Success", data: data });
     })
     .catch((err) => {
+      console.log(err);
       if (err) {
         return res
           .status(501)
@@ -22,16 +22,14 @@ export const addNewContact = (req, res) => {
     phone,
   })
     .then((data) => {
-      console.log(data);
-      res
-        .status(201)
-        .json({
-          result: "success",
-          message: "New contact saved successfully",
-          data: data,
-        });
+      res.status(201).json({
+        result: "success",
+        message: "New contact saved successfully",
+        data: data,
+      });
     })
     .catch((err) => {
+      console.log(err);
       if (err) {
         return res
           .status(501)
@@ -42,16 +40,13 @@ export const addNewContact = (req, res) => {
 
 export const addNewContactsBulk = (req, res) => {
   const bulkContacts = req.body.contacts_bulk;
-  console.log(bulkContacts);
   ContactList.bulkCreate([bulkContacts])
     .then(() => {
-      res
-        .status(201)
-        .json({
-          result: "success",
-          message: "Contacts in bulk saves succefully",
-          data: data,
-        });
+      res.status(201).json({
+        result: "success",
+        message: "Contacts in bulk saved succefully",
+        data: data,
+      });
     })
     .catch((err) => {
       console.log(err);

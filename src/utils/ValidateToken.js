@@ -23,7 +23,6 @@ const validateToken = (req, res, next) => {
     });
   }
   jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
-    console.log(err);
     if (err) {
       return res.status(401).json({
         result: "fail",

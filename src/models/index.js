@@ -26,25 +26,17 @@ const sequelize = new Sequelize(
     host: config.host,
     port: config.port,
     dialect: config.dialect,
-    define: {
-      timestamps: true,
-      underscored: false,
-    },
   }
 );
 
-if (process.NODE_ENV === "test") {
-  sequelize
-    .authenticate()
-    .then(() => {
-      console.log("Connection has been established successfully.");
-    })
-    .catch((err) => {
-      console.log("Unable to connect to the database:", err);
-    });
-}
-
-
+sequelize
+.authenticate()
+.then(() => {
+  console.log("Connection has been established successfully.");
+})
+.catch((err) => {
+  console.log("Unable to connect to the database:", err);
+});
 let models = {
     User: userModel(sequelize, DataTypes),
     ContactList: contactListModel(sequelize, DataTypes)  

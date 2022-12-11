@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("address_book", {
+    await queryInterface.createTable("contact_list", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -30,10 +30,10 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    await queryInterface.addConstraint("contact_book", {
+    await queryInterface.addConstraint("contact_list", {
       fields: ["user_id"],
       type: "FOREIGN KEY",
-      name: "address_book_users_association",
+      name: "contact_list_users_association",
       references: {
         table: "users",
         field: "id",
@@ -41,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("contact_book");
+    await queryInterface.dropTable("contact_list");
   },
 };

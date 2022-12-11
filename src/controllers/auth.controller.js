@@ -31,7 +31,6 @@ export const RegisterUser = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       if ((err.name = "UserError")) {
         return res
           .status(err.code)

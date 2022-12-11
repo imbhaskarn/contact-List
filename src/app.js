@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 app.get("/protected", validateToken, (req, res) => {
   return res.status(200).json({
     result: "success",
-    timestamp: new Date().toISOString(),
+    timestamp: new Date(),
     data: {
       payload: req.payload,
       message: "This is protected route!",

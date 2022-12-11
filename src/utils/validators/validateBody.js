@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { Sequelize } from "sequelize";
 const credsSchema = Joi.object({
   username: Joi.string().required().min(4).max(12),
   password: Joi.string().required().min(6).max(20),
@@ -41,7 +42,7 @@ export const bulkContactsListValidate = (req, res, next) => {
   const { error, value } = Joi.array()
     .min(2)
     .required()
-    .validate(req.body.address_bulk);
+    .validate(req.body.contacts_bulk);
   if (error) {
     return res.status(401).json({
       result: "error",
@@ -53,16 +54,16 @@ export const bulkContactsListValidate = (req, res, next) => {
     });
   }
   let errors = [];
-  const addressesBulk = req.body.address_bulk;
-  addressesBulk.forEach((address) => {
-    const { error, value } = contactsSchema.validate(address);
+  const addressesBulk = req.body.contacts_bulk;
+  addressesBulk.forEach((contact) => {
+    const { error, value } = contactsSchema.validate(contact);
     if (error) {
       errors.push({
         input: error._original,
         details: error.details.map((item) => item.message),
       });
     }
-    address.createdAt = address.user_id = req.payload.user_id;
+    contact.user_id = req.payload.user_id;
   });
   if (errors.length > 0) {
     return res.status(401).json({
