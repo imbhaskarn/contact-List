@@ -1,8 +1,12 @@
 "use strict";
 import { Model } from "sequelize";
+
+// create ContactList model mapped to contact_list table
+
 export default (sequelize, DataTypes) => {
   class ContactList extends Model {
     static associate(models) {
+      // define table relationships
       ContactList.belongsTo(models.User, { foreignKey: "user_id" });
       models.User.hasMany(ContactList, { foreignKey: "user_id" });
     }
