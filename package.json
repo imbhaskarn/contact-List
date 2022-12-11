@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest",
-    "db:migrate": "npx sequelize-cli db:migrate"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "test:docker": "docker-compose -f docker-compose-jest.yml up"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-export default  {
+export default {
   development: {
     username: "postgres",
     password: "password",
@@ -11,17 +11,18 @@ export default  {
     dialect: "postgres",
   },
   test: {
-    username: "root",
-    password: null,
-    database: "database_test",
+    username: "postgres",
+    password: "password",
+    database: "postgres",
     host: "127.0.0.1",
-    dialect: "mysql",
+    port: 5432,
+    dialect: "postgres",
   },
   production: {
     username: "root",
     password: null,
     database: "database_production",
     host: "127.0.0.1",
-    dialect: "mysql",
+    dialect: "postgres",
   },
 };
