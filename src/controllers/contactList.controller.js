@@ -19,11 +19,17 @@ export const addNewContact = (req, res) => {
   ContactList.create({
     user_id: req.payload.user_id,
     name,
-    phone
+    phone,
   })
     .then((data) => {
       console.log(data);
-      res.status(201).json({ result: "success", message: "New contact saved successfully", data: data });
+      res
+        .status(201)
+        .json({
+          result: "success",
+          message: "New contact saved successfully",
+          data: data,
+        });
     })
     .catch((err) => {
       if (err) {
@@ -39,7 +45,13 @@ export const addNewContactsBulk = (req, res) => {
   console.log(bulkContacts);
   ContactList.bulkCreate([bulkContacts])
     .then(() => {
-      res.status(201).json({ result: "success",message: "Contacts in bulk saves succefully", data: data });
+      res
+        .status(201)
+        .json({
+          result: "success",
+          message: "Contacts in bulk saves succefully",
+          data: data,
+        });
     })
     .catch((err) => {
       console.log(err);

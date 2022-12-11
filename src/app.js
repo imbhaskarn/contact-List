@@ -10,7 +10,7 @@ import { validateCreds } from "./utils/validators/validateBody.js";
 const app = express();
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-
+export default app;
 app.use("/api/v1/contact-list", contactListRouter);
 app.get("/", (req, res) => {
   return res.status(200).json({
@@ -36,4 +36,3 @@ app.get("/protected", validateToken, (req, res) => {
 app.post("/register", validateCreds, RegisterUser);
 app.post("/generate-token", validateCreds, GenerateToken);
 
-export default app;

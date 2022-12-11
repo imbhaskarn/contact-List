@@ -12,11 +12,10 @@ const config = sequelizeConfig[env];
 
 
 
-
 // import models from files
 
 import userModel from './user.js'
-import contactListModel from "./ContactList.js";
+import contactListModel from "./contactList.js";
 
 // create sequelize instance
 const sequelize = new Sequelize(
@@ -34,14 +33,17 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log("Connection has been established successfully.");
-  })
-  .catch((err) => {
-    console.log("Unable to connect to the database:", err);
-  });
+if (process.NODE_ENV === "test") {
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log("Connection has been established successfully.");
+    })
+    .catch((err) => {
+      console.log("Unable to connect to the database:", err);
+    });
+}
+
 
 let models = {
     User: userModel(sequelize, DataTypes),
