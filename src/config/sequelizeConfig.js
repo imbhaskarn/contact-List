@@ -4,7 +4,7 @@ dotenv.config();
 export default {
   development: {
     username: "postgres",
-    password: "password",
+    password: "123456",
     database: "postgres",
     host: "127.0.0.1",
     port: 5432,

@@ -21,53 +21,41 @@ post http://localhost:8080/generate-token
 Content-Type: application/json
 
 {
-    "username": "bhaskar",
+    "username": "bhaskars",
     "password": "password"
 }
 
 
 ###
 
-get http://localhost:8080/api/v1/addressbook
+get http://localhost:8080/api/v1/contact-list
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXIiLCJ1c2VyX2lkIjoxLCJpYXQiOjE2NzA2NzEyODEsImV4cCI6MTY3MDc1NzY4MX0.KuZoqotwtNa92jY3xjpH4qewJU1JtcO5gTiGVGpblmA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXJzIiwidXNlcl9pZCI6MSwiaWF0IjoxNjcwNzU2Nzg3LCJleHAiOjE2NzA4NDMxODd9.IiS4eOakmsaeGcItKjg3SMVyj4PMb6eIUD2cI3MxgdA
 
 
 ###
-POST http://localhost:8080/api/v1/addressbook
+POST http://localhost:8080/api/v1/contact-list
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXIiLCJ1c2VyX2lkIjoxLCJpYXQiOjE2NzA2NzEyODEsImV4cCI6MTY3MDc1NzY4MX0.KuZoqotwtNa92jY3xjpH4qewJU1JtcO5gTiGVGpblmA
 
 {
-  "address": "near temple",
-  "town_village": "rawatsar",
-  "city": "hanumangarh",
-  "pincode": 335524,
-  "state": "rajastahn",
-  "country": "Russia"
+  "phone": "6378845082",
+  "name": "bhaskar"
 }
 
 ###
-POST http://localhost:8080/api/v1/addressbook/bulk
+POST http://localhost:8080/api/v1/contact-list/bulk
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXIiLCJ1c2VyX2lkIjoxLCJpYXQiOjE2NzA2NzEyODEsImV4cCI6MTY3MDc1NzY4MX0.KuZoqotwtNa92jY3xjpH4qewJU1JtcO5gTiGVGpblmA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJoYXNrYXJzIiwidXNlcl9pZCI6MSwiaWF0IjoxNjcwNzU4Mzk0LCJleHAiOjE2NzA4NDQ3OTR9.DSRnE-e1KGEthbBuyRLF35lvMuOAooZBPyEm00poPN8
 
 {
-  "address_bulk": [{
-  "address": "near temple",
-  "town_village": "rawatsar",
-  "city": "hanumangarh",
-  "pincode": 335524,
-  "state": "rajastahn",
-  "country": "Russia"
+  "contacts_bulk": [{
+  "phone": "6378845082",
+  "name": "bhaskar"
 },
 {
-  "address": "near temple",
-  "town_village": "rawatsar",
-  "city": "hanumangarh",
-  "pincode": 335524,
-  "state": "rajastahn",
-  "country": "Russia"
+  "phone": "6378845082",
+  "name": "bhaskar"
 }]
 }
 

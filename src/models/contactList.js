@@ -1,5 +1,5 @@
 "use strict";
-import { Model } from "sequelize";
+import { Model, Sequelize } from "sequelize";
 
 // create ContactList model mapped to contact_list table
 
@@ -32,8 +32,9 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
+        defaultValue: Sequelize.NOW()
       },
       updatedAt: {
         allowNull: false,
@@ -43,7 +44,7 @@ export default (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "ContactList",
-      tableName: "acontact_list",
+      tableName: "contact_list",
     }
   );
   return ContactList;
